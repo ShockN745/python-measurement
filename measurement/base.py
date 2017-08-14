@@ -335,6 +335,10 @@ class MeasureBase(object):
     def __nonzero__(self):      # Python 2 compatibility
         return type(self).__bool__(self)
 
+    def __round__(self, ndigits=None):
+        self.standard = round(self.standard, ndigits)
+        return self
+
     def _convert_value_to(self, unit, value):
         if not isinstance(value, float):
             value = float(value)
