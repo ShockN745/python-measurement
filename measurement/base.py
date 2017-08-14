@@ -438,6 +438,7 @@ class BidimensionalMeasure(object):
                 measure_string,
                 value
             )
+            self._rounding = False
 
     def _get_unit_parts(self, measure_string):
         if measure_string in self.ALIAS:
@@ -466,7 +467,22 @@ class BidimensionalMeasure(object):
 
     @property
     def standard(self):
-        return self.primary.standard / self.reference.standard
+        standard = self.primary.standard / self.reference.standard
+        patik = 23
+
+        # print(self._rounding)
+        # s = 0.0
+        if not self._rounding:
+            print("HEYYYYYYYYYYYYYYYYY")
+            return standard
+            # s = standard
+        print("COUCOUUUUUUUUUUUU")
+        return standard
+
+        # s = round(standard, self._rounding)
+        # print(standard)
+        # print(s)
+        # return s
 
     @classproperty
     @classmethod
@@ -683,3 +699,7 @@ class BidimensionalMeasure(object):
 
     def __nonzero__(self):  # Python 2 compatibility
         return type(self).__bool__(self)
+
+    def __round__(self, ndigits=None):
+        self._rounding = ndigits
+        return self

@@ -202,3 +202,29 @@ class SpeedTest(MeasurementTestBase):
             expected_value,
             actual_value,
         )
+
+    def test_round_unit(self):
+        speed = Speed(mi__hr=22.3694)
+        expected = Speed(mi__hr=22)
+
+        round(speed)
+        print(speed)
+        print(expected)
+
+        self.assertEqual(
+            speed,
+            expected
+        )
+
+    def test_round_decimal(self):
+        speed = Speed(mi__hr=22.3694)
+        expected = Speed(mi__hr=22.37)
+
+        round(speed, 2)
+        print(speed)
+        print(expected)
+
+        self.assertEqual(
+            speed,
+            expected
+        )
